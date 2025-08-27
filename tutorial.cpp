@@ -1,18 +1,18 @@
 #include <iostream>//cout
 #include <string>//string
 
-#include "task.hpp"
+#include "CTask.hpp"
 
 
 int main()
 {
-    std::string description = "This is a task description.";
-    Task task(description);
-    task.Display();
+    std::string description = "Task created with string.";
+    CTask Task(description);
+    Task.Display();
 
-    const char* c_description = "This is another task description.";
-    Task task2(c_description);
-    task2.Display();
+    const char* const c_description = "Task created with string char*.";
+    CTask Task2(c_description);
+    Task2.Display();
 
     return 0;
 }

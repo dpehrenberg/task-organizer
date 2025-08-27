@@ -8,9 +8,9 @@ class CTask
 {
 public:
     CTask(const std::string& description_): m_description(description_) {};
-    CTask(const char* const description_): m_description(description_) {};
     ~CTask() = default;
 
+    //TODO enable move and copy constructors
     
     // Disable copy and move semantics
     CTask(const CTask&) = delete;
@@ -24,6 +24,8 @@ public:
     }
 private:
     const std::string m_description;
+    int m_priority; // Default priority
+    //TODO: remember last removed task description
 };
 
 #endif // CTask_HPP
