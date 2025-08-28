@@ -2,29 +2,25 @@
 #define CTask_HPP
 
 #include <string>// string
-#include <iostream>// cout
 
 class CTask
 {
 public:
-    CTask(const std::string& description_): m_description(description_) {};
+    CTask(const std::string& description_);
     ~CTask() = default;
 
-    //TODO enable move and copy constructors
+    //copy and move constructors and assignment operators are enabled to allow storing CTask objects in STL containers
+    // The compiler-generated versions are sufficient since all members support copying and moving.
+    CTask(const CTask&) = default;
+    CTask& operator=(const CTask&) = default;
+    CTask(CTask&&) = default;
+    CTask& operator=(CTask&&) = default;
     
-    // Disable copy and move semantics
-    CTask(const CTask&) = delete;
-    CTask& operator=(const CTask&) = delete;
-    CTask(CTask&&) = delete;
-    CTask& operator=(CTask&&) = delete;
-    
-    void Display() const
-    {
-        std::cout << "CTask description: " << m_description << std::endl;
-    }
+    void Display() const;
 private:
+    int SetPriority() const;
     const std::string m_description;
-    int m_priority; // Default priority
+    int m_priority;
     //TODO: remember last removed task description
 };
 
