@@ -10,6 +10,8 @@ int CTask::SetPriority() const
     //phase 1: simple priority based on creation order
     static int ret = 0;
     ++ret;
+
+    //phase 2: interactive user defined priority
     return ret;
 }
 
