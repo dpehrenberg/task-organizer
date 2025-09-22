@@ -1,8 +1,9 @@
-#ifndef CTask_HPP
-#define CTask_HPP
+#ifndef CTaskOrganiser_HPP
+#define CTaskOrganiser_HPP
 
-#include <string>// string
-#include "CTask.hpp"// CTask
+#include <vector>
+#include <string>
+#include "CTask.hpp"
 
 class CTaskOrganiser
 {
@@ -16,14 +17,12 @@ public:
     CTaskOrganiser(CTaskOrganiser&&) = delete;
     CTaskOrganiser& operator=(CTaskOrganiser&&) = delete;
 
-    void AddTask(std::string description);
+    void AddTask(const std::string& description);
     void CompleteFirstTask();
     void DisplayFirstTask() const;
+
 private:
-    // Using a simple vector to store tasks; can be replaced with more complex structures if needed
-    //what data structure to use here? vector, list, deque?
+    std::vector<CTask> m_tasks; // Store tasks in a vector
 };
 
-
-
-#endif // CTask_HPP
+#endif // CTaskOrganiser_HPP
