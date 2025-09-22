@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+
 #include "CTask.hpp"
 
 class CTaskOrganiser

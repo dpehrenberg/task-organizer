@@ -1,21 +1,30 @@
-#include <iostream>// cout
+#include <iostream>
 
 #include "CTask.hpp"
 
-CTask::CTask(const std::string& description_): m_description(description_), m_priority(SetPriority())
-{}
-
-int CTask::SetPriority() const
+CTask::CTask(const std::string& description_)
+    : m_description(description_), m_priority(0)
 {
-    //phase 1: simple priority based on creation order
-    static int ret = 0;
-    ++ret;
-
-    //phase 2: interactive user defined priority
-    return ret;
+    SetPriority();
 }
 
 void CTask::Display() const
 {
-    std::cout << m_description << std::endl;
+    std::cout << "Task: " << m_description << " | Priority: " << m_priority << std::endl;
+}
+
+unsigned int CTask::GetPriority() const
+{
+    return m_priority;
+}
+
+const std::string& CTask::GetDescription() const
+{
+    return m_description;
+}
+
+// TODO: implement priority setting according to user prompts
+void CTask::SetPriority()
+{
+    m_priority = m_description.length();
 }
