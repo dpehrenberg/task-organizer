@@ -21,7 +21,7 @@ private:
     int SetPriority() const;
     const std::string m_description;
     int m_priority;
-    //TODO: remember last removed task description
+    //TODO: remember last removed task description and priority for undo functionality
 };
 
 #endif // CTask_HPP
