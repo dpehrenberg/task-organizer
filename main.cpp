@@ -24,31 +24,46 @@ int main()
         std::cout << "Choose an option: ";
         std::getline(std::cin, input);
 
-        if (input == "1")
+        int option = 0;
+        try 
         {
-            std::cout << "Enter task description: ";
-            std::string desc;
-            std::getline(std::cin, desc);
-            organiser.AddTask(desc);
-            organiser.DisplayFirstTask();
+            option = std::stoi(input);
         }
-        else if (input == "2")
+        catch (...)
         {
-            organiser.CompleteFirstTask();
-            organiser.DisplayFirstTask();
+            option = 0;
         }
-        else if (input == "3")
+
+        switch (option)
         {
-            organiser.DisplayAllTasks();
-        }
-        else if (input == "4")
-        {
-            std::cout << "Exiting.\n";
-            break;
-        }
-        else
-        {
-            std::cout << "Invalid option. Try again.\n";
+            case 1:
+            {
+                std::cout << "Enter task description: ";
+                std::string desc;
+                std::getline(std::cin, desc);
+                organiser.AddTask(desc);
+                organiser.DisplayFirstTask();
+                break;
+            }
+            case 2:
+            {
+                organiser.CompleteFirstTask();
+                organiser.DisplayFirstTask();
+                break;
+            }
+            case 3:
+            {
+                organiser.DisplayAllTasks();
+                break;
+            }
+            case 4:
+            {
+                std::cout << "Exiting.\n";
+                return 0;
+            }
+            default:
+                std::cout << "Invalid option. Try again.\n";
+                break;
         }
         std::cout << std::endl;
     }
