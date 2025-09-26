@@ -22,6 +22,7 @@ void CTaskOrganiser::AddTask(const std::string& description)
 
 void CTaskOrganiser::CompleteFirstTask()
 {
+    std::system("clear");
     if (m_tasks.empty())
     {
         std::cout << "No tasks to complete" << std::endl;
@@ -36,6 +37,7 @@ void CTaskOrganiser::CompleteFirstTask()
 
 void CTaskOrganiser::DisplayFirstTask() const
 {
+    std::system("clear");
     if (!m_tasks.empty())
     {
         std::cout << "Next task: ";
@@ -45,6 +47,7 @@ void CTaskOrganiser::DisplayFirstTask() const
 
 void CTaskOrganiser::DisplayAllTasks() const
 {
+    std::system("clear");
     if (m_tasks.empty())
     {
         std::cout << "No tasks available.\n";
@@ -52,7 +55,6 @@ void CTaskOrganiser::DisplayAllTasks() const
     }
 
     std::cout << "\nAll tasks (highest priority first):\n";
-    // Display in descending order (highest priority value first)
     for (auto it = m_tasks.begin(); it != m_tasks.end(); ++it)
     {
         it->Display();
