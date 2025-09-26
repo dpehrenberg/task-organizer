@@ -6,20 +6,16 @@
 class CTask
 {
 public:
-    CTask(const std::string& description_);
+    CTask(const std::string& description_, unsigned int priority_);
     ~CTask() = default;
 
     // Enable copy and move semantics for STL container compatibility
-    CTask(const CTask&) = default;
-    CTask& operator=(const CTask&) = default;
-    CTask(CTask&&) = default;
-    CTask& operator=(CTask&&) = default;
+    // the default implementations are sufficient as all members support these operations
     
     void Display() const;
-    unsigned int GetPriority() const; // Add getter for priority
-    const std::string& GetDescription() const; // Add getter for description
+    unsigned int GetPriority() const;
+    const std::string& GetDescription() const;
 private:
-    void SetPriority();
     std::string m_description;
     unsigned int m_priority;
     //TODO: remember last removed task description and priority for undo functionality

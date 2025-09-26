@@ -2,11 +2,9 @@
 
 #include "CTask.hpp"
 
-CTask::CTask(const std::string& description_)
-    : m_description(description_), m_priority(0)
-{
-    SetPriority();
-}
+CTask::CTask(const std::string& description_, unsigned int priority_)
+    : m_description(description_), m_priority(priority_)
+{}
 
 void CTask::Display() const
 {
@@ -21,10 +19,4 @@ unsigned int CTask::GetPriority() const
 const std::string& CTask::GetDescription() const
 {
     return m_description;
-}
-
-// TODO: implement priority setting according to user prompts
-void CTask::SetPriority()
-{
-    m_priority = m_description.length();
 }

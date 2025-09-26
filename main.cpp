@@ -15,8 +15,8 @@ int main()
         std::cout << "\nOptions:\n";
         std::cout << "1. Add task\n";
         std::cout << "2. Complete next task\n";
-        std::cout << "3. Exit\n";
-        std::cout << "4. Show all tasks\n";
+        std::cout << "3. Show all tasks\n";
+        std::cout << "4. Exit\n";
         std::cout << "Choose an option: ";
         std::getline(std::cin, input);
 
@@ -33,12 +33,12 @@ int main()
         }
         else if (input == "3")
         {
-            std::cout << "Exiting.\n";
-            break;
+            organiser.DisplayAllTasks();
         }
         else if (input == "4")
         {
-            organiser.DisplayAllTasks();
+            std::cout << "Exiting.\n";
+            break;
         }
         else
         {
