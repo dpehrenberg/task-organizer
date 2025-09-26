@@ -20,7 +20,7 @@ public:
     const std::string& GetDescription() const; // Add getter for description
 private:
     void SetPriority();
-    const std::string m_description;
+    std::string m_description;
     unsigned int m_priority;
     //TODO: remember last removed task description and priority for undo functionality
 };

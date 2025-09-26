@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm>
+#include <algorithm>// std::sort
 
 #include "CTaskOrganiser.hpp"
 
@@ -35,8 +35,20 @@ void CTaskOrganiser::DisplayFirstTask() const
         std::cout << "Next task: ";
         m_tasks.front().Display();
     }
-    else
+}
+
+void CTaskOrganiser::DisplayAllTasks() const
+{
+    if (m_tasks.empty())
     {
-        std::cout << "No tasks available" << std::endl;
+        std::cout << "No tasks available.\n";
+        return;
+    }
+
+    std::cout << "\nAll tasks (highest priority first):\n";
+    // Display in descending order (highest priority value first)
+    for (auto it = m_tasks.begin(); it != m_tasks.end(); ++it)
+    {
+        it->Display();
     }
 }

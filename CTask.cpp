@@ -10,7 +10,7 @@ CTask::CTask(const std::string& description_)
 
 void CTask::Display() const
 {
-    std::cout << "Task: " << m_description << " | Priority: " << m_priority << std::endl;
+    std::cout << m_description << " | Priority: " << m_priority << std::endl;
 }
 
 unsigned int CTask::GetPriority() const

@@ -21,6 +21,7 @@ public:
     void AddTask(const std::string& description);
     void CompleteFirstTask();
     void DisplayFirstTask() const;
+    void DisplayAllTasks() const;
 
 private:
     std::vector<CTask> m_tasks; // Store tasks in a vector
