@@ -9,7 +9,7 @@
 class CTaskOrganiser
 {
 public:
-    CTaskOrganiser() = default;
+    CTaskOrganiser();
     ~CTaskOrganiser() = default;
 
     // Disable copy and move semantics for CTaskOrganiser to prevent accidental copies or moves
