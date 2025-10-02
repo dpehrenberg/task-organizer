@@ -30,6 +30,7 @@ public:
     void CompleteNonFirstTask();
     void DisplayFirstTask() const;
     void DisplayAllTasks() const;
+    void ChangeTaskPriority();
 
 private:
     bool HasRealTasks() const;

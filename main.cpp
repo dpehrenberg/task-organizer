@@ -30,7 +30,8 @@ int main()
         std::cout << "3. Complete any task\n";
         std::cout << "4. Add multiple tasks\n";
         std::cout << "5. Show all tasks\n";
-        std::cout << "6. Exit\n";
+        std::cout << "6. Change task priority\n";
+        std::cout << "7. Exit\n";
         std::cout << "Choose an option: ";
         std::getline(std::cin, input);
 
@@ -79,10 +80,12 @@ int main()
                 break;
             }
             case 6:
-            {
+                organiser.ChangeTaskPriority();
+                organiser.DisplayAllTasks();
+                break;
+            case 7:
                 std::cout << "Exiting.\n";
                 return 0;
-            }
             default:
                 std::cout << "Invalid option. Try again.\n";
                 break;

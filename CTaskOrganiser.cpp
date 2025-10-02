@@ -145,6 +145,45 @@ void CTaskOrganiser::CompleteNonFirstTask()
     m_tasks.erase(m_tasks.begin() + idx);
 }
 
+void CTaskOrganiser::ChangeTaskPriority()
+{
+    ClearScreen();
+
+    if (!HasRealTasks())
+    {
+        std::cout << "No tasks to change.\n";
+        return;
+    }
+
+    std::cout << "Tasks:\n";
+    for (size_t i = 1; i < m_tasks.size() - 1; ++i)
+    {
+        std::cout << i << ". ";
+        m_tasks[i].Display();
+    }
+
+    std::cout << "Enter the number of the task to change priority: ";
+    size_t idx;
+    std::cin >> idx;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    if (idx < 1 || idx >= m_tasks.size() - 1)
+    {
+        std::cout << "Invalid task number.\n";
+        return;
+    }
+
+    // Save the description and remove the task
+    std::string desc = m_tasks[idx].GetDescription();
+    m_tasks.erase(m_tasks.begin() + idx);
+
+    // Insert the task again using the AddTask logic (binary search with user prompts)
+    std::cout << "Re-inserting task: " << desc << std::endl;
+    AddTask(desc);
+
+    std::cout << "Priority updated.\n";
+}
+
 bool CTaskOrganiser::HasRealTasks() const
 {
     return 2 < m_tasks.size();
