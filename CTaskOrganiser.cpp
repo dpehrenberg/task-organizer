@@ -124,10 +124,15 @@ void CTaskOrganiser::CompleteNonFirstTask()
     PrintTasksWithIndices();
 
     std::cout << "Enter the number of the task to complete: ";
+    std::string idx_input;
+    std::getline(std::cin, idx_input);
     size_t idx;
-    std::cin >> idx;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+    try {
+        idx = std::stoul(idx_input);
+    } catch (...) {
+        std::cout << "Invalid task number.\n";
+        return;
+    }
     if (!IsValidTaskIndex(idx))
     {
         std::cout << "Invalid task number.\n";
