@@ -7,7 +7,8 @@
 
 #include "CTask.hpp"
 
-inline void ClearScreen() {
+inline void ClearScreen()
+{
     std::cout << "\033[2J\033[H";
 }
 
@@ -31,6 +32,7 @@ public:
     void DisplayAllTasks() const;
 
 private:
+    bool HasRealTasks() const;
     std::vector<CTask> m_tasks; // Store tasks in a vector
 };
 

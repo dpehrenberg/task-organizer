@@ -84,7 +84,7 @@ void CTaskOrganiser::CompleteFirstTask()
 void CTaskOrganiser::DisplayFirstTask() const
 {
     ClearScreen();
-    if (2 >= m_tasks.size())
+    if (!HasRealTasks())
     {
         std::cout << "No tasks" << std::endl;
         return;
@@ -98,7 +98,7 @@ void CTaskOrganiser::DisplayFirstTask() const
 void CTaskOrganiser::DisplayAllTasks() const
 {
     ClearScreen();
-    if (2 >= m_tasks.size())
+    if (!HasRealTasks())
     {
         std::cout << "No tasks" << std::endl;
         return;
@@ -116,7 +116,7 @@ void CTaskOrganiser::CompleteNonFirstTask()
 {
     ClearScreen();
 
-    if (m_tasks.size() <= 2)
+    if (!HasRealTasks())
     {
         std::cout << "No tasks to complete.\n";
         return;
@@ -143,4 +143,9 @@ void CTaskOrganiser::CompleteNonFirstTask()
     std::cout << "Completing task: ";
     m_tasks[idx].Display();
     m_tasks.erase(m_tasks.begin() + idx);
+}
+
+bool CTaskOrganiser::HasRealTasks() const
+{
+    return 2 < m_tasks.size();
 }
