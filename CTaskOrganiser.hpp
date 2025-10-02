@@ -18,7 +18,7 @@ public:
     CTaskOrganiser(CTaskOrganiser&&) = delete;
     CTaskOrganiser& operator=(CTaskOrganiser&&) = delete;
 
-    void AddTask(const std::string& description);
+    void AddTask(const std::string& description_);
     void AddMultipleTasks();
     void CompleteFirstTask();
     void DisplayFirstTask() const;
