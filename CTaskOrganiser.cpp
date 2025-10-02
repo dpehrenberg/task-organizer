@@ -105,7 +105,7 @@ void CTaskOrganiser::DisplayAllTasks() const
         return;
     }
 
-    std::cout << "\nAll tasks (highest priority first):\n";
+    std::cout << "\nAll tasks (highest priority first):\n" << std::endl;
     // Skip dummy tasks: first (START) and last (END)
     for (size_t i = 1; i < m_tasks.size() - 1; ++i)
     {
