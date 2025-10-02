@@ -8,8 +8,18 @@ int main()
 {
     CTaskOrganiser organiser;
     std::string input;
-    std::cout << "\nWelcome to Tasks!:\n";
-    std::cout << "Press Enter to continue...";
+    std::system("clear"); // Clear for user to see clean welcome message
+
+    std::cout << "\n\n\n\n"<< R"(
+                                 _______   _      _____    ____  _  __ _____
+                                |__   __| / \    / ____)  /  __)| |/ // ____)
+                                   | |   / _ \  ( (___   |  /   | ' /( (___  
+                                   | |  / / \ \  \___  \ | (    |  (  \___  \
+                                   | | / /___\ \  ____) )|  \__ | . \  ____) )
+                                   |_|/_/     \_\(_____/  \____)|_|\_\(_____/
+
+)";
+    std::cout << "\n\n\n\n\n\n\n\nPress Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Wait for user
 
     std::system("clear"); // Clear after user sees welcome
