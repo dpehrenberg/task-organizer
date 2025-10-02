@@ -10,6 +10,28 @@ CTaskOrganiser::CTaskOrganiser()
     m_tasks.emplace_back("END", std::numeric_limits<unsigned int>::max());
 }
 
+void CTaskOrganiser::AddMultipleTasks()
+{
+    std::vector<std::string> descriptions;
+    std::cout << "Enter task descriptions (empty line to finish):\n";
+    while (true)
+    {
+        std::string desc;
+        std::getline(std::cin, desc);
+        if (desc.empty())
+        {
+            break;
+        }
+
+        descriptions.push_back(desc);
+    }
+
+    for (const auto &desc : descriptions)
+    {
+        AddTask(desc);
+    }
+}
+
 void CTaskOrganiser::AddTask(const std::string& description)
 {
     int left = 0;
