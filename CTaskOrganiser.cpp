@@ -32,7 +32,7 @@ void CTaskOrganiser::AddMultipleTasks()
     }
 }
 
-void CTaskOrganiser::AddTask(const std::string& description)
+void CTaskOrganiser::AddTask(const std::string& description_)
 {
     int left = 0;
     int right = m_tasks.size() - 1;
@@ -41,7 +41,7 @@ void CTaskOrganiser::AddTask(const std::string& description)
     while (left < right - 1)
     {
         int mid = left + (right - left) / 2;
-        std::cout << "Should the new task come before: ";
+        std::cout << "Should the new task \"" << description_ << "\" come before: ";
         m_tasks[mid].Display();
         std::cout << "(y/n): ";
         std::string answer;
@@ -64,7 +64,7 @@ void CTaskOrganiser::AddTask(const std::string& description)
     unsigned int newPriority = prevPriority / 2 + nextPriority / 2;
 
     m_tasks.insert(m_tasks.begin() + insertPos,
-                   CTask(description, newPriority));
+                   CTask(description_, newPriority));
 }
 
 void CTaskOrganiser::CompleteFirstTask()
