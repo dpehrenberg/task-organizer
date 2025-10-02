@@ -29,9 +29,8 @@ int main()
         std::cout << "2. Complete next task\n";
         std::cout << "3. Complete any task\n";
         std::cout << "4. Add multiple tasks\n";
-        std::cout << "5. Show all tasks\n";
-        std::cout << "6. Change task priority\n";
-        std::cout << "7. Exit\n";
+        std::cout << "5. Change task priority\n";
+        std::cout << "6. Exit\n";
         std::cout << "Choose an option: ";
         std::getline(std::cin, input);
 
@@ -48,47 +47,34 @@ int main()
         switch (option)
         {
             case 1:
-            {
                 std::cout << "Enter task description: ";
-                std::string desc;
-                std::getline(std::cin, desc);
-                organiser.AddTask(desc);
-                organiser.DisplayFirstTask();
+                {
+                    std::string desc;
+                    std::getline(std::cin, desc);
+                    organiser.AddTask(desc);
+                }
                 break;
-            }
             case 2:
-            {
                 organiser.CompleteFirstTask();
-                organiser.DisplayFirstTask();
                 break;
-            }
             case 3:
-            {
                 organiser.CompleteNonFirstTask();
-                organiser.DisplayFirstTask();
                 break;
-            }
             case 4:
-            {
                 organiser.AddMultipleTasks();
-                organiser.DisplayFirstTask();
                 break;
-            }
             case 5:
-            {
-                organiser.DisplayAllTasks();
-                break;
-            }
-            case 6:
                 organiser.ChangeTaskPriority();
-                organiser.DisplayAllTasks();
                 break;
-            case 7:
+            case 6:
                 std::cout << "Exiting.\n";
                 return 0;
             default:
                 std::cout << "Invalid option. Try again.\n";
                 break;
+        }
+        if (option != 6) {
+            organiser.DisplayAllTasks();
         }
         std::cout << std::endl;
     }
