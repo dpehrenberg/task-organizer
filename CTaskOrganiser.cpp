@@ -41,9 +41,8 @@ void CTaskOrganiser::AddTask(const std::string& description_)
     while (left < right - 1)
     {
         int mid = left + (right - left) / 2;
-        std::cout << "Should the new task \"" << description_ << "\" come before: ";
-        m_tasks[mid].Display();
-        std::cout << "(y/n): ";
+        std::cout << "Should the new task: \"" << description_ << "\"\n";
+        std::cout << "come before \"" << m_tasks[mid].GetDescription() << "\" (y/n): ";
         std::string answer;
         std::getline(std::cin, answer);
 
