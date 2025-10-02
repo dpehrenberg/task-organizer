@@ -69,16 +69,15 @@ void CTaskOrganiser::AddTask(const std::string& description_)
 void CTaskOrganiser::CompleteFirstTask()
 {
     ClearScreen();
-    if (m_tasks.empty())
+    if (!HasRealTasks())
     {
         std::cout << "No tasks to complete" << std::endl;
+        return;
     }
-    else
-    {
-        std::cout << "Completing task: ";
-        m_tasks.front().Display();
-        m_tasks.erase(m_tasks.begin());
-    }
+    m_lastRemovedTask = m_tasks[1];
+    std::cout << "Completing task: ";
+    m_tasks[1].Display();
+    m_tasks.erase(m_tasks.begin() + 1);
 }
 
 void CTaskOrganiser::DisplayFirstTask() const
@@ -134,7 +133,8 @@ void CTaskOrganiser::CompleteNonFirstTask()
         std::cout << "Invalid task number.\n";
         return;
     }
-
+    
+    m_lastRemovedTask = m_tasks[idx];
     std::cout << "Completing task: ";
     m_tasks[idx].Display();
     m_tasks.erase(m_tasks.begin() + idx);
@@ -192,4 +192,28 @@ void CTaskOrganiser::PrintTasksWithIndices() const
 bool CTaskOrganiser::IsValidTaskIndex(size_t idx_) const
 {
     return (1 <= idx_) && (idx_ < m_tasks.size() - 1);
+}
+
+void CTaskOrganiser::UndoLastComplete()
+{
+    if (!m_lastRemovedTask)
+    {
+        std::cout << "No task to undo.\n";
+        return;
+    }
+
+    // Restore the task at its original priority, without user prompts
+    const std::string& desc = m_lastRemovedTask->GetDescription();
+    unsigned int priority = m_lastRemovedTask->GetPriority();
+
+    // Find the correct position to insert based on priority
+    auto it = m_tasks.begin() + 1; // skip START dummy
+    while (it != m_tasks.end() - 1 && it->GetPriority() < priority)
+    {
+        ++it;
+    }
+
+    m_tasks.insert(it, CTask(desc, priority));
+    m_lastRemovedTask.reset();
+    std::cout << "Last completed task restored.\n";
 }

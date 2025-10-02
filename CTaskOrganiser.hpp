@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <iostream> // For std::cout
+#include <optional>
 
 #include "CTask.hpp"
 
@@ -31,12 +32,14 @@ public:
     void DisplayFirstTask() const;
     void DisplayAllTasks() const;
     void ChangeTaskPriority();
+    void UndoLastComplete();
 
 private:
     void PrintTasksWithIndices() const;
     bool HasRealTasks() const;
     bool IsValidTaskIndex(size_t idx) const;
     std::vector<CTask> m_tasks; // Store tasks in a vector
+    std::optional<CTask> m_lastRemovedTask;
 };
 
 #endif // CTaskOrganiser_HPP
