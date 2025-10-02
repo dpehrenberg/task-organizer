@@ -21,6 +21,7 @@ public:
     void AddTask(const std::string& description_);
     void AddMultipleTasks();
     void CompleteFirstTask();
+    void CompleteNonFirstTask();
     void DisplayFirstTask() const;
     void DisplayAllTasks() const;
 

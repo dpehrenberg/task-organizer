@@ -29,9 +29,10 @@ int main()
         std::cout << "\nOptions:\n";
         std::cout << "1. Add task\n";
         std::cout << "2. Complete next task\n";
-        std::cout << "3. Add multiple tasks\n";
-        std::cout << "4. Show all tasks\n";
-        std::cout << "5. Exit\n";
+        std::cout << "3. Complete any task\n";
+        std::cout << "4. Add multiple tasks\n";
+        std::cout << "5. Show all tasks\n";
+        std::cout << "6. Exit\n";
         std::cout << "Choose an option: ";
         std::getline(std::cin, input);
 
@@ -64,16 +65,22 @@ int main()
             }
             case 3:
             {
-                organiser.AddMultipleTasks();
+                organiser.CompleteNonFirstTask();
                 organiser.DisplayFirstTask();
                 break;
             }
             case 4:
             {
-                organiser.DisplayAllTasks();
+                organiser.AddMultipleTasks();
+                organiser.DisplayFirstTask();
                 break;
             }
             case 5:
+            {
+                organiser.DisplayAllTasks();
+                break;
+            }
+            case 6:
             {
                 std::cout << "Exiting.\n";
                 return 0;

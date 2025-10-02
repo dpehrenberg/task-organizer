@@ -111,3 +111,36 @@ void CTaskOrganiser::DisplayAllTasks() const
         m_tasks[i].Display();
     }
 }
+
+void CTaskOrganiser::CompleteNonFirstTask()
+{
+    std::cout << "\033[2J\033[H"; // Clear screen
+    
+    if (m_tasks.size() <= 2)
+    {
+        std::cout << "No tasks to complete.\n";
+        return;
+    }
+
+    std::cout << "Tasks:\n";
+    for (size_t i = 1; i < m_tasks.size() - 1; ++i)
+    {
+        std::cout << i << ". ";
+        m_tasks[i].Display();
+    }
+
+    std::cout << "Enter the number of the task to complete: ";
+    size_t idx;
+    std::cin >> idx;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    if (idx < 1 || idx >= m_tasks.size() - 1)
+    {
+        std::cout << "Invalid task number.\n";
+        return;
+    }
+
+    std::cout << "Completing task: ";
+    m_tasks[idx].Display();
+    m_tasks.erase(m_tasks.begin() + idx);
+}
