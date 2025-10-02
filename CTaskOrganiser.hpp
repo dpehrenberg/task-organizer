@@ -32,6 +32,7 @@ public:
     void DisplayFirstTask() const;
     void DisplayAllTasks() const;
     void ChangeTaskPriority();
+    void ChangeTaskName();
     void UndoLastComplete();
 
 private:

@@ -179,6 +179,45 @@ void CTaskOrganiser::ChangeTaskPriority()
     std::cout << "Priority updated.\n";
 }
 
+void CTaskOrganiser::ChangeTaskName()
+{
+    ClearScreen();
+
+    if (!HasRealTasks())
+    {
+        std::cout << "No tasks to rename.\n";
+        return;
+    }
+
+    PrintTasksWithIndices();
+
+    std::cout << "Enter the number of the task to rename: ";
+    std::string idx_input;
+    std::getline(std::cin, idx_input);
+    size_t idx;
+    try {
+        idx = std::stoul(idx_input);
+    } catch (...) {
+        std::cout << "Invalid task number.\n";
+        return;
+    }
+    if (!IsValidTaskIndex(idx))
+    {
+        std::cout << "Invalid task number.\n";
+        return;
+    }
+
+    std::cout << "Current name: ";
+    m_tasks[idx].Display();
+    std::cout << "Enter new name: ";
+    std::string new_name;
+    std::getline(std::cin, new_name);
+
+    m_tasks[idx].ChangeName(new_name);
+
+    std::cout << "Task name updated.\n";
+}
+
 bool CTaskOrganiser::HasRealTasks() const
 {
     return 2 < m_tasks.size();

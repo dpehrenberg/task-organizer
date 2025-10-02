@@ -15,6 +15,7 @@ public:
     void Display() const;
     unsigned int GetPriority() const;
     const std::string& GetDescription() const;
+    void ChangeName(const std::string& new_name_);
 private:
     std::string m_description;
     unsigned int m_priority;

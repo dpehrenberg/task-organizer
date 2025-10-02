@@ -20,3 +20,8 @@ const std::string& CTask::GetDescription() const
 {
     return m_description;
 }
+
+void CTask::ChangeName(const std::string& new_name_)
+{
+    m_description = new_name_;
+}
