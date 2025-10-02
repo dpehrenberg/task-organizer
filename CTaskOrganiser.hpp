@@ -33,7 +33,9 @@ public:
     void ChangeTaskPriority();
 
 private:
+    void PrintTasksWithIndices() const;
     bool HasRealTasks() const;
+    bool IsValidTaskIndex(size_t idx) const;
     std::vector<CTask> m_tasks; // Store tasks in a vector
 };
 

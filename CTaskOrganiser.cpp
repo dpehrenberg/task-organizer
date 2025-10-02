@@ -122,19 +122,14 @@ void CTaskOrganiser::CompleteNonFirstTask()
         return;
     }
 
-    std::cout << "Tasks:\n";
-    for (size_t i = 1; i < m_tasks.size() - 1; ++i)
-    {
-        std::cout << i << ". ";
-        m_tasks[i].Display();
-    }
+    PrintTasksWithIndices();
 
     std::cout << "Enter the number of the task to complete: ";
     size_t idx;
     std::cin >> idx;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    if (idx < 1 || idx >= m_tasks.size() - 1)
+    if (!IsValidTaskIndex(idx))
     {
         std::cout << "Invalid task number.\n";
         return;
@@ -155,19 +150,14 @@ void CTaskOrganiser::ChangeTaskPriority()
         return;
     }
 
-    std::cout << "Tasks:\n";
-    for (size_t i = 1; i < m_tasks.size() - 1; ++i)
-    {
-        std::cout << i << ". ";
-        m_tasks[i].Display();
-    }
+    PrintTasksWithIndices();
 
     std::cout << "Enter the number of the task to change priority: ";
     size_t idx;
     std::cin >> idx;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    if (idx < 1 || idx >= m_tasks.size() - 1)
+    if (!IsValidTaskIndex(idx))
     {
         std::cout << "Invalid task number.\n";
         return;
@@ -187,4 +177,19 @@ void CTaskOrganiser::ChangeTaskPriority()
 bool CTaskOrganiser::HasRealTasks() const
 {
     return 2 < m_tasks.size();
+}
+
+void CTaskOrganiser::PrintTasksWithIndices() const
+{
+    std::cout << "Tasks:\n";
+    for (size_t i = 1; i < m_tasks.size() - 1; ++i)
+    {
+        std::cout << i << ". ";
+        m_tasks[i].Display();
+    }
+}
+
+bool CTaskOrganiser::IsValidTaskIndex(size_t idx_) const
+{
+    return (1 <= idx_) && (idx_ < m_tasks.size() - 1);
 }
