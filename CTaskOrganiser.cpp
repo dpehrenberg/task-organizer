@@ -68,7 +68,7 @@ void CTaskOrganiser::AddTask(const std::string& description_)
 
 void CTaskOrganiser::CompleteFirstTask()
 {
-    std::system("clear");
+    ClearScreen();
     if (m_tasks.empty())
     {
         std::cout << "No tasks to complete" << std::endl;
@@ -83,7 +83,7 @@ void CTaskOrganiser::CompleteFirstTask()
 
 void CTaskOrganiser::DisplayFirstTask() const
 {
-    std::system("clear");
+    ClearScreen();
     if (2 >= m_tasks.size())
     {
         std::cout << "No tasks" << std::endl;
@@ -97,7 +97,7 @@ void CTaskOrganiser::DisplayFirstTask() const
 
 void CTaskOrganiser::DisplayAllTasks() const
 {
-    std::system("clear");
+    ClearScreen();
     if (2 >= m_tasks.size())
     {
         std::cout << "No tasks" << std::endl;
@@ -114,8 +114,8 @@ void CTaskOrganiser::DisplayAllTasks() const
 
 void CTaskOrganiser::CompleteNonFirstTask()
 {
-    std::cout << "\033[2J\033[H"; // Clear screen
-    
+    ClearScreen();
+
     if (m_tasks.size() <= 2)
     {
         std::cout << "No tasks to complete.\n";

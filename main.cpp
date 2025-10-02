@@ -6,11 +6,8 @@
 
 int main()
 {
-    CTaskOrganiser organiser;
-    std::string input;
-    std::cout << "\033[2J\033[H"; // Clear for user to see clean welcome message
-
-    std::cout << "\n\n\n\n"<< R"(
+    ClearScreen(); // Clear for user to see clean welcome message
+    std::cout << "\n\n\n\n"<< R"( 
                                  _______   _      _____   _  __ _____
                                 |__   __| / \    / ____) | |/ // ____) 
                                    | |   / _ \  ( (___   | ' /( (___  
@@ -22,7 +19,8 @@ int main()
     std::cout << "\n\n\n\n\n\n\n\nPress Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Wait for user
 
-    std::cout << "\033[2J\033[H"; // Clear after user sees welcome
+    std::string input;
+    CTaskOrganiser organiser;
 
     while (true)
     {

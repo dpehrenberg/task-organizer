@@ -3,8 +3,13 @@
 
 #include <vector>
 #include <string>
+#include <iostream> // For std::cout
 
 #include "CTask.hpp"
+
+inline void ClearScreen() {
+    std::cout << "\033[2J\033[H";
+}
 
 class CTaskOrganiser
 {
