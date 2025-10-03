@@ -32,7 +32,8 @@ int main()
         std::cout << "5. Change task priority\n";
         std::cout << "6. Undo last complete\n";
         std::cout << "7. Change task name\n";
-        std::cout << "8. Exit\n";
+        std::cout << "8. Save tasks\n";
+        std::cout << "9. Exit\n";
         std::cout << "Choose an option: ";
         std::getline(std::cin, input);
 
@@ -75,13 +76,19 @@ int main()
                 organiser.ChangeTaskName();
                 break;
             case 8:
-                std::cout << "Exiting.\n";
+                organiser.SaveToFile("tasks.txt");
+                std::cout << "Tasks saved.\n";
+                break;
+            case 9:
+                std::cout << "Saving and exiting.\n";
+                organiser.SaveToFile("tasks.txt");
                 return 0;
             default:
                 std::cout << "Invalid option. Try again.\n";
                 break;
         }
-        if (option != 8) {
+        if (option != 9)
+        {
             organiser.DisplayAllTasks();
         }
         std::cout << std::endl;

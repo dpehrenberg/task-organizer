@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>// std::sort
 #include <limits> // std::numeric_limits
+#include <fstream> // std::ifstream, std::ofstream
 
 #include "CTaskOrganiser.hpp"
 
@@ -260,4 +261,34 @@ void CTaskOrganiser::UndoLastComplete()
     m_tasks.insert(it, CTask(desc, priority));
     m_lastRemovedTask.reset();
     std::cout << "Last completed task restored.\n";
+}
+
+// Save all real tasks (skip dummies)
+void CTaskOrganiser::SaveToFile(const std::string& filename) const
+{
+    std::ofstream ofs(filename);
+    // Use iterator to skip START and END dummies
+    auto end = m_tasks.end() - 1;
+    for (auto it = m_tasks.begin() + 1; it != end; ++it)
+    {
+        ofs << it->GetPriority() << '\t' << it->GetDescription() << '\n';
+    }
+}
+
+// Load tasks from file (clears current tasks)
+void CTaskOrganiser::LoadFromFile(const std::string& filename)
+{
+    m_tasks.clear();
+    m_tasks.emplace_back("START", 0);
+    m_tasks.emplace_back("END", std::numeric_limits<unsigned int>::max());
+
+    std::ifstream ifs(filename);
+    unsigned int priority;
+    std::string description;
+    while (ifs >> priority)
+    {
+        ifs.get(); // skip tab
+        std::getline(ifs, description);
+        m_tasks.insert(m_tasks.end() - 1, CTask(description, priority));
+    }
 }

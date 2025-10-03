@@ -34,6 +34,8 @@ public:
     void ChangeTaskPriority();
     void ChangeTaskName();
     void UndoLastComplete();
+    void SaveToFile(const std::string& filename) const;
+    void LoadFromFile(const std::string& filename);
 
 private:
     void PrintTasksWithIndices() const;
