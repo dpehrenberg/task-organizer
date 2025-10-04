@@ -2,8 +2,14 @@
 #include <algorithm>// std::sort
 #include <limits> // std::numeric_limits
 #include <fstream> // std::ifstream, std::ofstream
+#include <filesystem> //create_directory
 
 #include "CTaskOrganiser.hpp"
+
+void EnsureOrganisersDir()
+{
+    std::filesystem::create_directory("organisers");
+}
 
 CTaskOrganiser::CTaskOrganiser()
 {
@@ -100,7 +106,6 @@ void CTaskOrganiser::DisplayAllTasks() const
     ClearScreen();
     if (!HasRealTasks())
     {
-        std::cout << "No tasks" << std::endl;
         return;
     }
 
@@ -264,7 +269,7 @@ void CTaskOrganiser::UndoLastComplete()
 }
 
 // Save all real tasks (skip dummies)
-void CTaskOrganiser::SaveToFile(const std::string& filename) const
+void CTaskOrganiser::SaveWithName(const std::string& filename) const
 {
     std::ofstream ofs(filename);
     // Use iterator to skip START and END dummies
@@ -291,4 +296,54 @@ void CTaskOrganiser::LoadFromFile(const std::string& filename)
         std::getline(ifs, description);
         m_tasks.insert(m_tasks.end() - 1, CTask(description, priority));
     }
+    // Set organiser name from filename (strip .txt and path)
+    auto slash = filename.find_last_of("/\\");
+    auto start = (slash == std::string::npos) ? 0 : slash + 1;
+    auto pos = filename.rfind(".txt");
+    if (pos != std::string::npos)
+        m_name = filename.substr(start, pos - start);
+    else
+        m_name = filename.substr(start);
+}
+
+void CTaskOrganiser::Save()
+{
+    EnsureOrganisersDir();
+
+    //if no name yet, ask for one
+    if ("default" == m_name)
+    {
+        std::cout << "Enter organiser name to save: ";
+        std::getline(std::cin, m_name);
+    }
+    std::string path = "organisers/" + m_name + ".txt";
+    SaveWithName(path);
+
+    // Update last_organiser.txt
+    std::ofstream last("organisers/last_organiser.txt");
+    last << m_name << std::endl;
+
+    std::cout << "Organiser saved as \"" << m_name << "\".\n";
+}
+
+void CTaskOrganiser::ChangeOrganiserName()
+{
+    std::cout << "Current organiser name: " << GetName() << "\n";
+    std::cout << "Enter new organiser name: ";
+    std::string new_name;
+    std::getline(std::cin, new_name);
+    if (!new_name.empty())
+    {
+        m_name = new_name;
+        std::cout << "Organiser name changed to \"" << m_name << "\".\n";
+    }
+    else
+    {
+        std::cout << "Organiser name not changed.\n";
+    }
+}
+
+const std::string& CTaskOrganiser::GetName() const
+{
+    return m_name;
 }

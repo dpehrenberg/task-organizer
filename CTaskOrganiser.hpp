@@ -33,16 +33,21 @@ public:
     void DisplayAllTasks() const;
     void ChangeTaskPriority();
     void ChangeTaskName();
+    void ChangeOrganiserName();
     void UndoLastComplete();
-    void SaveToFile(const std::string& filename) const;
+    void Save();
     void LoadFromFile(const std::string& filename);
-
+    const std::string& GetName() const;
+    
 private:
+    std::string          m_name = "default";
+    std::vector<CTask>   m_tasks;
+    std::optional<CTask> m_lastRemovedTask;//for undo functionality
+    
+    void SaveWithName(const std::string& filename) const;
     void PrintTasksWithIndices() const;
     bool HasRealTasks() const;
     bool IsValidTaskIndex(size_t idx) const;
-    std::vector<CTask> m_tasks; // Store tasks in a vector
-    std::optional<CTask> m_lastRemovedTask;
 };
 
 #endif // CTaskOrganiser_HPP
