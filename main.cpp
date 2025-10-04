@@ -182,8 +182,8 @@ int main()
             }
             case 9: // Exit and save
             {
-                organiser.Save();
                 std::cout << "Saving and exiting.\n";
+                organiser.Save();
                 
                 return 0;
             }
@@ -210,7 +210,7 @@ int main()
                         std::cout << "Organiser file renamed to '" << newPath << "'.\n";
                     }
                 }
-                
+
                 break;
             }
             default:

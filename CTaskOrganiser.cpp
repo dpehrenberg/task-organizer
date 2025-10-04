@@ -310,7 +310,14 @@ void CTaskOrganiser::Save()
 {
     EnsureOrganisersDir();
 
-    //if no name yet, ask for one
+    // If organiser is empty (no real tasks)
+    if (!HasRealTasks())
+    {
+        std::cout << "Organiser is empty. Nothing to save.\n";
+        return;
+    }
+
+    // If no name yet, ask for one
     if ("default" == m_name)
     {
         std::cout << "Enter organiser name to save: ";
