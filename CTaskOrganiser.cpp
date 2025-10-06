@@ -311,8 +311,7 @@ void CTaskOrganiser::Save()
     EnsureOrganisersDir();
 
     // If organiser is empty (no real tasks)
-    if (!HasRealTasks())
-    {
+    if (!HasRealTasks()){
         std::cout << "Organiser is empty. Nothing to save.\n";
         return;
     }
