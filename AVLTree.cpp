@@ -42,10 +42,11 @@ size_t CAvlTree::SizeWithoutDummies() const
     return m_size - 2; // Exclude dummy nodes
 }
 
-/*
-bool CAvlTree::empty() const {
-    return m_size == 0;
+bool CAvlTree::Empty() const
+{
+    return 0 == SizeWithoutDummies();
 }
+/*
 
 // Helper to update height and size of a node
 template<typename NodePtr>
