@@ -3,8 +3,14 @@
 
 #include <memory>      // For std::unique_ptr (smart pointers for tree nodes)
 #include <functional>  // For std::function (if needed for callbacks/comparisons)
+#include <limits>      // For std::numeric_limits (used for END dummy node priority)
 
 #include "CTask.hpp"  // For the CTask class used as the value in the AVL tree
+
+// The AVL tree always contains two dummy nodes:
+//  - A START node (task name "START", priority 0) as the smallest element
+//  - An END node (task name "END", priority UINT_MAX) as the largest element
+// These nodes are present at all times and are not removed by normal operations.
 
 class CAvlTree
 {
@@ -39,14 +45,14 @@ public:
     CAvlTree();
     ~CAvlTree();
 
-    CIterator insert(const CTask& task);
-    void erase(CIterator it);
-    CIterator find_by_index(int idx) const;
-    CIterator begin() const;
-    CIterator end() const;
-    int size() const;
-    bool empty() const;
-    void clear();
+    CIterator Insert(const CTask& task);
+    void Erase(CIterator it);
+    CIterator FindByIndex(int idx) const;
+    CIterator Begin() const;
+    CIterator End() const;
+    int Size() const;
+    bool Empty() const;
+    void Clear();
 
     // Additional methods as needed
 
