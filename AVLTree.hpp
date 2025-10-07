@@ -53,7 +53,8 @@ public:
     CIterator FindByIndex(int idx) const;
     CIterator Begin() const;
     CIterator End() const;
-    int Size() const;
+    int SizeWithDummies() const;
+    int SizeWithoutDummies() const;
     bool Empty() const;
     void Clear();
 
