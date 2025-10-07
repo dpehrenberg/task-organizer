@@ -20,8 +20,8 @@ class CAvlTree
 public:
     struct SNode
     {
-        SNode(const CTask& t, SNode* p = nullptr)
-            : task(t), left(nullptr), right(nullptr), parent(p), height(1), size(1) {}
+        SNode(const CTask& t, SNode* p = nullptr, int h = 1, int s = 1)
+            : task(t), left(nullptr), right(nullptr), parent(p), height(h), size(s) {}
 
         CTask                  task;
         std::unique_ptr<SNode> left;
