@@ -1,3 +1,5 @@
+/* this class implements an AVL tree. Basic understanding of AVL trees is required */
+
 #ifndef CAvlTree_HPP
 #define CAvlTree_HPP
 
@@ -11,6 +13,7 @@
 //  - A START node (task name "START", priority 0) as the smallest element
 //  - An END node (task name "END", priority UINT_MAX) as the largest element
 // These nodes are present at all times and are not removed by normal operations.
+// their purpose is to simplify the logic of determining the priority of a new tasks.
 
 class CAvlTree
 {
@@ -45,7 +48,7 @@ public:
     CAvlTree();
     ~CAvlTree();
 
-    CIterator Insert(const CTask& task);
+    CIterator InsertBefore(const CTask& task, CIterator pos);
     void Erase(CIterator it);
     CIterator FindByIndex(int idx) const;
     CIterator Begin() const;
@@ -54,12 +57,19 @@ public:
     bool Empty() const;
     void Clear();
 
+    // Access the k-th element (0-based, in-order, excluding dummy nodes)
+    CTask& operator[](int idx);
+    const CTask& operator[](int idx) const;
+
     // Additional methods as needed
 
 private:
     std::unique_ptr<SNode> m_root;
     int m_size;
     // Helper functions for rotations, balancing, updating sizes/heights, etc.
+
+    // Helper to insert node before a given node
+    SNode* insert_before(SNode* root, const CTask& task, SNode* before, SNode*& inserted, SNode* parent = nullptr);
 };
 
 #endif // CAvlTree_HPP
