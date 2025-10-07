@@ -45,8 +45,9 @@ public:
         friend class CAvlTree;
     };
 
+    void Clear();
     CAvlTree();
-    ~CAvlTree();
+    ~CAvlTree() = default;
 
     CIterator InsertBefore(const CTask& task, CIterator pos);
     void Erase(CIterator it);
@@ -56,7 +57,6 @@ public:
     int SizeWithDummies() const;
     int SizeWithoutDummies() const;
     bool Empty() const;
-    void Clear();
 
     // Access the k-th element (0-based, in-order, excluding dummy nodes)
     CTask& operator[](int idx);
