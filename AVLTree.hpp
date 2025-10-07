@@ -45,17 +45,17 @@ public:
         friend class CAvlTree;
     };
 
-    void Clear();
     CAvlTree();
     ~CAvlTree() = default;
-
+    
     CIterator InsertBefore(const CTask& task, CIterator pos);
     void Erase(CIterator it);
     CIterator FindByIndex(int idx) const;
     CIterator Begin() const;
     CIterator End() const;
-    int SizeWithDummies() const;
-    int SizeWithoutDummies() const;
+    size_t SizeWithDummies() const;
+    size_t SizeWithoutDummies() const;
+    void Clear();
     bool Empty() const;
 
     // Access the k-th element (0-based, in-order, excluding dummy nodes)
