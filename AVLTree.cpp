@@ -15,22 +15,34 @@ CAvlTree::CAvlTree()
     m_root = std::move(endNode);
     m_size = 2;
 }
-/*
-CAvlTree::~CAvlTree()
-{
-    Clear();
-}
 
 void CAvlTree::Clear()
 {
-    m_root.reset();
-    m_size = 0;
-}
+    SNode* endDummy = m_root.get();
+    SNode* startDummy = endDummy->left.get();
 
-int CAvlTree::size() const {
+    // All real nodes are part of the right subtree of START
+    startDummy->right.reset();
+
+    // Reinitialize the dummy nodes and tree size
+    startDummy->height = 1;
+    startDummy->size = 1;
+    endDummy->height = 2;
+    endDummy->size = 2;
+    m_size = 2;
+}
+    
+size_t CAvlTree::SizeWithDummies() const
+{
     return m_size;
 }
 
+size_t CAvlTree::SizeWithoutDummies() const
+{
+    return m_size - 2; // Exclude dummy nodes
+}
+
+/*
 bool CAvlTree::empty() const {
     return m_size == 0;
 }
