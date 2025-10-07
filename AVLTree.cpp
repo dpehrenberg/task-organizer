@@ -46,20 +46,25 @@ bool CAvlTree::Empty() const
 {
     return 0 == SizeWithoutDummies();
 }
-/*
 
 // Helper to update height and size of a node
 template<typename NodePtr>
-static void update(NodePtr& node) {
-    if (!node) return;
-    int lh = node->left ? node->left->height : 0;
-    int rh = node->right ? node->right->height : 0;
-    node->height = std::max(lh, rh) + 1;
-    int lsize = node->left ? node->left->size : 0;
-    int rsize = node->right ? node->right->size : 0;
-    node->size = lsize + rsize + 1;
+static void Update(NodePtr& node)
+{
+    if (!node)
+    {
+        return;
+    }
+    
+    int lHeight = node->left ? node->left->height : 0;
+    int rHeight = node->right ? node->right->height : 0;
+    node->height = std::max(lHeight, rHeight) + 1;
+    int lSize = node->left ? node->left->size : 0;
+    int rSize = node->right ? node->right->size : 0;
+    node->size = lSize + rSize + 1;
 }
 
+/*
 // Rotations and balancing helpers would go here (not implemented for brevity)
 
 // Insert a new node before the given iterator (in in-order traversal)

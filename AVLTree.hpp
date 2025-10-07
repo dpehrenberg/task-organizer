@@ -35,6 +35,7 @@ public:
     {
     public:
         CIterator(SNode* SNode = nullptr) : m_SNode(SNode) {}
+        
         CTask& operator*() const { return m_SNode->task; }
         CTask* operator->() const { return &m_SNode->task; }
         bool operator==(const CIterator& other) const { return m_SNode == other.m_SNode; }
@@ -51,11 +52,11 @@ public:
     CIterator InsertBefore(const CTask& task, CIterator pos);
     void Erase(CIterator it);
     CIterator FindByIndex(int idx) const;
-    CIterator Begin() const;
-    CIterator End() const;
+    void Clear();
     size_t SizeWithDummies() const;
     size_t SizeWithoutDummies() const;
-    void Clear();
+    CIterator Begin() const;
+    CIterator End() const;
     bool Empty() const;
 
     // Access the k-th element (0-based, in-order, excluding dummy nodes)
@@ -71,6 +72,9 @@ private:
 
     // Helper to insert node before a given node
     SNode* insert_before(SNode* root, const CTask& task, SNode* before, SNode*& inserted, SNode* parent = nullptr);
+
+    template<typename NodePtr>
+    static void Update(NodePtr& node);// doesn't need access to class members, only to node structure
 };
 
 #endif // CAvlTree_HPP
