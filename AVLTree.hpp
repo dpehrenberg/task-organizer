@@ -52,7 +52,7 @@ public:
     CIterator InsertBefore(const CTask& task, CIterator pos);
     void Erase(CIterator it);
     CIterator FindByIndex(int idx) const;
-    void Clear();
+    void Clear(); //reset tree to initial state with only dummy nodes
     size_t SizeWithDummies() const;
     size_t SizeWithoutDummies() const;
     CIterator Begin() const;
