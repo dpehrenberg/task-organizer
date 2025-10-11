@@ -53,8 +53,7 @@ public:
     void Erase(CIterator it);
     CIterator FindByIndex(int idx) const;
     void Clear(); //reset tree to initial state with only dummy nodes
-    size_t SizeWithDummies() const;
-    size_t SizeWithoutDummies() const;
+    size_t Size() const;
     CIterator Begin() const;
     CIterator End() const;
     bool Empty() const;
@@ -64,15 +63,13 @@ public:
     const CTask& operator[](int idx) const;
 
     // Additional methods as needed
-
+    
 private:
     std::unique_ptr<SNode> m_root;
-    int m_size;
-    // Helper functions for rotations, balancing, updating sizes/heights, etc.
-
+    
+    size_t SizeWithDummies() const;
     // Helper to insert node before a given node
     SNode* insert_before(SNode* root, const CTask& task, SNode* before, SNode*& inserted, SNode* parent = nullptr);
-
     template<typename NodePtr>
     static void Update(NodePtr& node);// doesn't need access to class members, only to node structure
 };

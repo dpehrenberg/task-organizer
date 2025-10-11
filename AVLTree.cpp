@@ -4,16 +4,21 @@
 #include "AVLTree.hpp"
 
 CAvlTree::CAvlTree()
-    : m_root(nullptr), m_size(0)
+    : m_root(nullptr)
 {
     // Manually build the two dummy nodes: START and END
-    // END will be the root, START will be the left child
+    // END will be the root, START will be the left child:
+    //           START
+    //          /
+    //        END
+    //          \
+    //  subtree of valid nodes will start here
+
     auto endNode = std::make_unique<SNode>(
         CTask("END", std::numeric_limits<unsigned int>::max()), nullptr, 2, 2);// height 2, size 2
-    auto startNode = std::make_unique<SNode>(CTask("START", 0), endNode.get());
+    auto startNode = std::make_unique<SNode>(CTask("START", 0), endNode.get());//height and size default to 1
     endNode->left = std::move(startNode);
     m_root = std::move(endNode);
-    m_size = 2;
 }
 
 void CAvlTree::Clear()
@@ -29,22 +34,21 @@ void CAvlTree::Clear()
     startDummy->size = 1;
     endDummy->height = 2;
     endDummy->size = 2;
-    m_size = 2;
 }
     
 size_t CAvlTree::SizeWithDummies() const
 {
-    return m_size;
+    return m_root->size;
 }
 
-size_t CAvlTree::SizeWithoutDummies() const
+size_t CAvlTree::Size() const
 {
-    return m_size - 2; // Exclude dummy nodes
+    return SizeWithDummies() - 2; // Exclude dummy nodes
 }
 
 bool CAvlTree::Empty() const
 {
-    return 0 == SizeWithoutDummies();
+    return 0 == Size();
 }
 
 // Helper to update height and size of a node
@@ -55,7 +59,7 @@ static void Update(NodePtr& node)
     {
         return;
     }
-    
+
     int lHeight = node->left ? node->left->height : 0;
     int rHeight = node->right ? node->right->height : 0;
     node->height = std::max(lHeight, rHeight) + 1;
@@ -132,5 +136,9 @@ const CTask& CAvlTree::operator[](int idx) const {
     auto it = FindByIndex(idx);
     if (it == End()) throw std::out_of_range("CAvlTree::operator[]: index out of range");
     return *it;
+}
+
+void CAvlTree::Erase(CIterator it) {
+    // Erase implementation would go here
 }
 */
