@@ -20,10 +20,10 @@ public:
     ~CTaskOrganiser() = default;
 
     // Disable copy and move semantics for CTaskOrganiser to prevent accidental copies or moves
-    CTaskOrganiser(const CTaskOrganiser&) = delete;
+    CTaskOrganiser(const CTaskOrganiser&)            = delete;
     CTaskOrganiser& operator=(const CTaskOrganiser&) = delete;
-    CTaskOrganiser(CTaskOrganiser&&) = delete;
-    CTaskOrganiser& operator=(CTaskOrganiser&&) = delete;
+    CTaskOrganiser(CTaskOrganiser&&)                 = delete;
+    CTaskOrganiser& operator=(CTaskOrganiser&&)      = delete;
 
     void AddTask(const std::string& description_);
     void AddMultipleTasks();
